@@ -1,7 +1,7 @@
 from src.data_loader import load_data
 from src.data_validation import validate_data
 from src.data_cleaning import clean_data
-
+from src.eda import perform_eda
 
 # Dataset ka path
 DATA_PATH = "data/raw/grid_timeseries_2020_2024.csv"
@@ -37,3 +37,6 @@ print(cleaned_df.isnull().sum().sum())
 
 print("\nColumns after cleaning:")
 print(cleaned_df.columns.tolist())
+
+# 6. Exploratory Data Analysis
+perform_eda(cleaned_df)
