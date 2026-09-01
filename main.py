@@ -4,6 +4,7 @@ from src.data_cleaning import clean_data
 from src.eda import perform_eda
 from src.preprocessing import prepare_data, time_based_split
 from src.baseline_model import train_baseline_model
+from src.logistic_regression_model import train_logistic_regression
 
 # Dataset ka path
 DATA_PATH = "data/raw/grid_timeseries_2020_2024.csv"
@@ -110,3 +111,40 @@ print(f1)
 
 print("\nConfusion Matrix:")
 print(cm)
+
+# 10. Logistic Regression Model
+
+(
+    logistic_model,
+    lr_accuracy,
+    lr_precision,
+    lr_recall,
+    lr_f1,
+    lr_roc_auc,
+    lr_cm
+) = train_logistic_regression(
+    X_train,
+    X_test,
+    y_train,
+    y_test
+)
+
+print("\n===== LOGISTIC REGRESSION =====")
+
+print("\nAccuracy:")
+print(lr_accuracy)
+
+print("\nPrecision:")
+print(lr_precision)
+
+print("\nRecall:")
+print(lr_recall)
+
+print("\nF1 Score:")
+print(lr_f1)
+
+print("\nROC-AUC:")
+print(lr_roc_auc)
+
+print("\nConfusion Matrix:")
+print(lr_cm)
