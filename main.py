@@ -5,6 +5,7 @@ from src.eda import perform_eda
 from src.preprocessing import prepare_data, time_based_split
 from src.baseline_model import train_baseline_model
 from src.logistic_regression_model import train_logistic_regression
+from src.random_forest_model import train_random_forest
 
 # Dataset ka path
 DATA_PATH = "data/raw/grid_timeseries_2020_2024.csv"
@@ -148,3 +149,41 @@ print(lr_roc_auc)
 
 print("\nConfusion Matrix:")
 print(lr_cm)
+
+# 11. Random Forest Model
+
+(
+    rf_model,
+    rf_accuracy,
+    rf_precision,
+    rf_recall,
+    rf_f1,
+    rf_roc_auc,
+    rf_cm
+) = train_random_forest(
+    X_train,
+    X_test,
+    y_train,
+    y_test
+)
+
+
+print("\n===== RANDOM FOREST =====")
+
+print("\nAccuracy:")
+print(rf_accuracy)
+
+print("\nPrecision:")
+print(rf_precision)
+
+print("\nRecall:")
+print(rf_recall)
+
+print("\nF1 Score:")
+print(rf_f1)
+
+print("\nROC-AUC:")
+print(rf_roc_auc)
+
+print("\nConfusion Matrix:")
+print(rf_cm)
