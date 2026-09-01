@@ -2,6 +2,7 @@ from src.data_loader import load_data
 from src.data_validation import validate_data
 from src.data_cleaning import clean_data
 from src.eda import perform_eda
+from src.preprocessing import prepare_data, time_based_split
 
 # Dataset ka path
 DATA_PATH = "data/raw/grid_timeseries_2020_2024.csv"
@@ -40,3 +41,45 @@ print(cleaned_df.columns.tolist())
 
 # 6. Exploratory Data Analysis
 perform_eda(cleaned_df)
+
+# 7. Prepare data for machine learning
+X, y = prepare_data(cleaned_df)
+
+print("\n===== FEATURE PREPARATION =====")
+
+print("\nFeature shape:")
+print(X.shape)
+
+print("\nTarget shape:")
+print(y.shape)
+
+print("\nFeature columns:")
+print(X.columns.tolist())
+
+
+# 8. Time-based train/test split
+X_train, X_test, y_train, y_test = time_based_split(
+    X,
+    y,
+    train_ratio=0.8
+)
+
+print("\n===== TRAIN TEST SPLIT =====")
+
+print("\nX_train:")
+print(X_train.shape)
+
+print("\nX_test:")
+print(X_test.shape)
+
+print("\ny_train:")
+print(y_train.shape)
+
+print("\ny_test:")
+print(y_test.shape)
+
+print("\nTraining Target Distribution:")
+print(y_train.value_counts())
+
+print("\nTesting Target Distribution:")
+print(y_test.value_counts())
