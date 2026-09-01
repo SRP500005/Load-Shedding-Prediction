@@ -6,6 +6,7 @@ from src.preprocessing import prepare_data, time_based_split
 from src.baseline_model import train_baseline_model
 from src.logistic_regression_model import train_logistic_regression
 from src.random_forest_model import train_random_forest
+from src.xgboost_model import train_xgboost
 
 # Dataset ka path
 DATA_PATH = "data/raw/grid_timeseries_2020_2024.csv"
@@ -187,3 +188,41 @@ print(rf_roc_auc)
 
 print("\nConfusion Matrix:")
 print(rf_cm)
+
+# 12. XGBoost Model
+
+(
+    xgb_model,
+    xgb_accuracy,
+    xgb_precision,
+    xgb_recall,
+    xgb_f1,
+    xgb_roc_auc,
+    xgb_cm
+) = train_xgboost(
+    X_train,
+    X_test,
+    y_train,
+    y_test
+)
+
+
+print("\n===== XGBOOST =====")
+
+print("\nAccuracy:")
+print(xgb_accuracy)
+
+print("\nPrecision:")
+print(xgb_precision)
+
+print("\nRecall:")
+print(xgb_recall)
+
+print("\nF1 Score:")
+print(xgb_f1)
+
+print("\nROC-AUC:")
+print(xgb_roc_auc)
+
+print("\nConfusion Matrix:")
+print(xgb_cm)
