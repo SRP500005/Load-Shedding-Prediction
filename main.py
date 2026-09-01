@@ -3,6 +3,7 @@ from src.data_validation import validate_data
 from src.data_cleaning import clean_data
 from src.eda import perform_eda
 from src.preprocessing import prepare_data, time_based_split
+from src.baseline_model import train_baseline_model
 
 # Dataset ka path
 DATA_PATH = "data/raw/grid_timeseries_2020_2024.csv"
@@ -83,3 +84,29 @@ print(y_train.value_counts())
 
 print("\nTesting Target Distribution:")
 print(y_test.value_counts())
+
+# 9. Baseline Model
+
+accuracy, precision, recall, f1, cm = train_baseline_model(
+    X_train,
+    X_test,
+    y_train,
+    y_test
+)
+
+print("\n===== BASELINE MODEL =====")
+
+print("\nAccuracy:")
+print(accuracy)
+
+print("\nPrecision:")
+print(precision)
+
+print("\nRecall:")
+print(recall)
+
+print("\nF1 Score:")
+print(f1)
+
+print("\nConfusion Matrix:")
+print(cm)
