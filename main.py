@@ -7,6 +7,7 @@ from src.baseline_model import train_baseline_model
 from src.logistic_regression_model import train_logistic_regression
 from src.random_forest_model import train_random_forest
 from src.xgboost_model import train_xgboost
+from src.model_comparison import compare_models
 
 # Dataset ka path
 DATA_PATH = "data/raw/grid_timeseries_2020_2024.csv"
@@ -226,3 +227,45 @@ print(xgb_roc_auc)
 
 print("\nConfusion Matrix:")
 print(xgb_cm)
+
+# 13. Model Comparison
+
+baseline_metrics = [
+    accuracy,
+    precision,
+    recall,
+    f1,
+    0.0
+]
+
+logistic_metrics = [
+    lr_accuracy,
+    lr_precision,
+    lr_recall,
+    lr_f1,
+    lr_roc_auc
+]
+
+random_forest_metrics = [
+    rf_accuracy,
+    rf_precision,
+    rf_recall,
+    rf_f1,
+    rf_roc_auc
+]
+
+xgboost_metrics = [
+    xgb_accuracy,
+    xgb_precision,
+    xgb_recall,
+    xgb_f1,
+    xgb_roc_auc
+]
+
+
+comparison_results = compare_models(
+    baseline_metrics,
+    logistic_metrics,
+    random_forest_metrics,
+    xgboost_metrics
+)
