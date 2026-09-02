@@ -8,6 +8,7 @@ from src.logistic_regression_model import train_logistic_regression
 from src.random_forest_model import train_random_forest
 from src.xgboost_model import train_xgboost
 from src.model_comparison import compare_models
+from src.threshold_optimization import optimize_random_forest_threshold
 
 # Dataset ka path
 DATA_PATH = "data/raw/grid_timeseries_2020_2024.csv"
@@ -268,4 +269,22 @@ comparison_results = compare_models(
     logistic_metrics,
     random_forest_metrics,
     xgboost_metrics
+)
+
+# 14. Random Forest Threshold Optimization
+
+(
+    optimized_rf_model,
+    best_threshold,
+    rf_pr_auc,
+    optimized_accuracy,
+    optimized_precision,
+    optimized_recall,
+    optimized_f1,
+    optimized_cm
+) = optimize_random_forest_threshold(
+    X_train,
+    X_test,
+    y_train,
+    y_test
 )
