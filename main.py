@@ -9,6 +9,7 @@ from src.random_forest_model import train_random_forest
 from src.xgboost_model import train_xgboost
 from src.model_comparison import compare_models
 from src.threshold_optimization import optimize_random_forest_threshold
+from src.explainability import explain_random_forest
 
 # Dataset ka path
 DATA_PATH = "data/raw/grid_timeseries_2020_2024.csv"
@@ -287,4 +288,13 @@ comparison_results = compare_models(
     X_test,
     y_train,
     y_test
+)
+
+
+# 15. Feature Importance and SHAP Explainability
+
+feature_importance = explain_random_forest(
+    rf_model,
+    X_train,
+    X_test
 )
