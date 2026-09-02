@@ -10,6 +10,7 @@ from src.xgboost_model import train_xgboost
 from src.model_comparison import compare_models
 from src.threshold_optimization import optimize_random_forest_threshold
 from src.explainability import explain_random_forest
+from src.model_saving import save_final_model
 
 # Dataset ka path
 DATA_PATH = "data/raw/grid_timeseries_2020_2024.csv"
@@ -297,4 +298,16 @@ feature_importance = explain_random_forest(
     rf_model,
     X_train,
     X_test
+)
+
+# 16. Save Final Random Forest Model
+
+(
+    model_path,
+    features_path,
+    threshold_path
+) = save_final_model(
+    rf_model,
+    X_train.columns,
+    threshold=0.50
 )
