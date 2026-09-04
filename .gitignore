@@ -5,3 +5,5 @@ __pycache__/
 models/*.pkl
 models/*.joblib
 .env
+.DS_Store
+.streamlit/
